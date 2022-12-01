@@ -119,7 +119,6 @@ class Simplex:
         for i in range(self.m):
             for j in range(self.n):
                 new_table[i][j] = subResultTable[i][j]
-
         for j in range(self.n):
             sum_col = 0
             for i in range(self.m - 1):
@@ -136,12 +135,3 @@ class Simplex:
         if (self.basis == None):
             self.SynthBasis()
         return self.Calculate()
-        end_result = []
-        result_f = 0
-        #for i in range(len(self.func_coef) - 1):
-        #    end_result.append(round(result[i], 4))
-        #    result_f += self.func_coef[i] * end_result[i]
-        #print("___________")
-        #print("RESULT:")
-        #print(end_result)
-        #print("f= " + str(result_f))

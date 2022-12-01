@@ -72,8 +72,10 @@ min_max = input('f -> min/max?\n')
 func = input('Ввод целевой функции в формате: \"5.123x_1 -5.23x_2 +453x_3\"\n')
 func = func + " = 0"
 func = parseStatement(func, true_n, full_n)
+mult = -1
 if (min_max == "max"):
-    func = func * (-1)
+    mult = 1
+    func = -1 * func
 
 basis = None
 if input('Начальная точка? (y/n): ') == "y":
@@ -86,19 +88,16 @@ if input('Начальная точка? (y/n): ') == "y":
         if x != 0:
             basis.append(i + 1)
 
-print(basis)
 A.append(func)
-printTable(A)
 s = Simplex(A, full_n + 1, m + 1)
 table, result, _ = s.solve()
 
-
-for i in result:
-    print(round(i, 5), end=' ')
+print("Result: ")
+for i in range(1, len(result) - (full_n - true_n)):
+    print(round(result[i], 5), end=' ')
 print()
-
-print(-result[0])
-print(result @ func.transpose())
+print("F: ")
+print(-mult * result @ func.transpose())
 
 # task 1
 # 4
